@@ -34,7 +34,7 @@ links.new(alpha_over_node.outputs[0], composite_node.inputs[0])
 bpy.data.scenes["Scene"].render.resolution_x = 1920
 bpy.data.scenes["Scene"].render.resolution_y = 1080
 bpy.data.scenes["Scene"].render.resolution_percentage = 100
-bpy.data.scenes["Scene"].render.filepath = '/Users/linyingyou/NTUT/blender/blender'
+bpy.data.scenes["Scene"].render.filepath = 'img/1/blender.png'
 
 bpy.ops.render.render(write_still=True, use_viewport=True)
 
