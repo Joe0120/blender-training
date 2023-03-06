@@ -60,7 +60,7 @@ class BlenderRender:
 
 def main():
     bg_path = 'background.png'
-    output_path = 'img/'
+    output_path = 'img/2/'
     blender_render = BlenderRender(bg_path, output_path)
     blender_render.remove_all()
     for i in range(5):
