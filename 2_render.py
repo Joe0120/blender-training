@@ -4,16 +4,22 @@ import random
 class BlenderRender:
     def __init__(self, bg_path, output_path):
         self.restore_default()
+        self.remove_all()
         self.bg_path = bg_path
         self.output_path = output_path
 
     def add(self):
-        bpy.ops.mesh.primitive_ico_sphere_add(radius=1, enter_editmode=False, align='WORLD', location=(random.uniform(-2, 2), random.uniform(-2, 2), random.uniform(-2, 2)), scale=(0.5, 0.5, 0.5))
+        # bpy.ops.mesh.primitive_monkey_add(radius=1, enter_editmode=False, align='WORLD', location=(random.uniform(-2, 2), random.uniform(-2, 2), random.uniform(-2, 2)), scale=(0.5, 0.5, 0.5))
+        bpy.ops.mesh.primitive_monkey_add(size=2, enter_editmode=False, align='WORLD', location=(random.uniform(-2, 2), random.uniform(-2, 2), random.uniform(-2, 2)), scale=(1, 1, 1))
+        # bpy.ops.import_scene.fbx(filepath='scooter withp/01.fbx')
 
     def remove_all(self):
         for obj in bpy.data.objects: 
             if obj.name not in ['Camera', 'Light']:
                 bpy.data.objects.remove( bpy.data.objects[obj.name], do_unlink=True)
+        # release memory
+        bpy.ops.outliner.orphans_purge(do_recursive=True)
+
 
     def get_object_ls(self):
         return [obj.name for obj in bpy.data.objects]
@@ -62,8 +68,7 @@ def main():
     bg_path = 'background.png'
     output_path = 'img/2/'
     blender_render = BlenderRender(bg_path, output_path)
-    blender_render.remove_all()
-    for i in range(5):
+    for i in range(500):
         blender_render.add()
         blender_render.render(name=f'blender{str(i)}.png')
         blender_render.remove_all()
